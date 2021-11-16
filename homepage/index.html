@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <link href="styles.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <title>Presentation</title>
+        <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav m-auto">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Presentation <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="resume.html">Resume</a>
+                  </li>
+                  <li>
+                      <a class="navbar-brand" href="index.html">
+                        <img src="Photo_me.jpg" width="100" height="90" alt="" loading="lazy">
+                      </a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="projects.html">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="hobbies.html">Hobbies</a>
+                  </li>
+                </ul>
+            </div>
+        </nav>
+        <script>
+
+
+            onload = function()
+            {
+                const listButtons = document.getElementById("quick").querySelectorAll("button");
+                const divHidden = document.getElementsByClassName("hidden");
+                for (let i = 0; i < divHidden.length; i++)
+                {
+                    divHidden[i].hidden = true;
+                }
+            for (let i = 0; i < listButtons.length; i++)
+            {
+
+
+                    listButtons[i].addEventListener('click', function(){
+                        if (listButtons[i].name == "Morocco")
+                        {
+                            listButtons[i].style.backgroundColor = "green";
+                            let msg = document.createElement("p");
+                            let msgtxt = document.createTextNode("Correct! You've earned the right to know more about me :). My parents are part of the immigration wave that took place in the 70's in France. My dad came first to find a job, then my mother followed him and now here we are :)");
+
+                            msg.appendChild(msgtxt);
+                            document.getElementById("quick").appendChild(msg);
+                            msg.style.color = "green";
+                            for (let j = 0; j < listButtons.length; j++)
+                            {
+                                listButtons[j].disabled = true;
+                            }
+                            for (let i = 0; i < divHidden.length; i++)
+                            {
+                                divHidden[i].hidden = false;
+                            }
+
+                        }
+                        else if(listButtons[i].name == "Egypt")
+                        {
+                            listButtons[i].style.backgroundColor = "red";
+                            let msg = document.createElement("p");
+                            let msgtxt = document.createTextNode("Incorrect! But beautiful country to visit by the way!");
+
+                            msg.appendChild(msgtxt);
+
+                            document.getElementById("quick").appendChild(msg);
+                            msg.style.color = "red";
+
+                        }
+                        else
+                        {
+                           listButtons[i].style.backgroundColor = "red";
+                            let msg = document.createElement("p");
+                            let msgtxt = document.createTextNode("Oh that's a country I'd like to visit, but bad guess, sorry ;)");
+
+                            msg.appendChild(msgtxt);
+
+                            document.getElementById("quick").appendChild(msg);
+                            msg.style.color = "red";
+                        }
+
+                    });
+
+            }
+
+            const radio = document.getElementsByName("rank");
+            for (let i = 1; i < radio.length+1; i++)
+            {
+                const input = document.getElementById(i.toString());
+                input.addEventListener('click', function(){
+                    input.checked = true;
+                    if (i != radio.length && input.value == "6")
+                    {
+                        let msg = document.createElement("p");
+                        let txt = document.createTextNode("Congratulations, you found me ! I'm the 6th child, I have 2 little brothers and all the others are older than me.");
+                        msg.appendChild(txt);
+                        let nextInput = document.getElementById((i+1).toString());
+                        msg.style.color = "green";
+                        nextInput.insertAdjacentElement("beforebegin",msg);
+                        for (let j = 1; j < radio.length+1; j++)
+                        {
+                            const inputToDisable = document.getElementById(j.toString());
+                            inputToDisable.disabled = true;
+                        }
+                    }
+                    else if (i != radio.length && input.value != "6")
+                    {
+                        let msg = document.createElement("p");
+                        let txt = document.createTextNode("Not me, try elsewhere!");
+                        msg.appendChild(txt);
+                        let nextInput = document.getElementById((i+1).toString());
+                        msg.style.color = "red";
+                        nextInput.insertAdjacentElement("beforebegin",msg);
+                        input.disabled = true;
+                    }
+                    else
+                    {
+                        let msg = document.createElement("p");
+                        let txt = document.createTextNode("Not me, try elsewhere!");
+                        msg.appendChild(txt);
+                        let nextInput = document.getElementById((i+1).toString());
+                        msg.style.color = "red";
+                        nextInput.insertAdjacentElement("afterend",msg);
+                        input.disabled = true;
+                    }
+                    });
+            }
+
+            const revealButton = document.getElementById("flaws");
+            const divFlaws = document.querySelector('div[name="flawsCarousel"');
+
+            revealButton.addEventListener("click", function(){
+                divFlaws.style.visibility = "visible";
+                revealButton.disabled = true;
+            });
+
+            };
+
+
+
+        </script>
+    </head>
+    <body>
+        <div class="container">
+          <div class="title">
+            <h2>Know more about me</h2>
+          </div>
+            <div id="quick">
+
+                <p>Hi! I'm Marouan. I'm 26, I'm French and I was born in a city called Aix-les-bains. Currently I live in Grenoble, a well-known city surounded by mountains.</p>
+                <p>But wait a minute... My name doesn't really sound like a French name even if I'm French. Indeed my parents come from another country. Can you guess which country it is? </p>
+                <hr>
+                <h4>From which country come my parents?</h4>
+                <button type="button" name="Egypt" value="Egypt">Egypt</button>
+                <button type="button" name="Morocco" value="Morocco">Morocco</button>
+                <button type="button" name="Indonesia" value="Indonesia">Indonesia</button>
+                <br><br>
+            </div>
+            <div class="hidden" id="family">
+                <hr>
+                <h3>My Family</h3>
+                <p>I have 5 brothers and 2 sisters. Yeah I know, big family. Fortunately, we all love each other :)</p>
+                <p>Find my rank in terms of age (1 is the oldest child and 8 the youngest):</p>
+                <div>
+                <input type="radio" name="rank" id="1" value="1">
+                <label for="1">1</label><br>
+                <input type="radio" name="rank" id="2" value="2">
+                <label for="2">2</label><br>
+                <input type="radio" name="rank" id="3" value="3">
+                <label for="3">3</label><br>
+                <input type="radio" name="rank" id="4" value="4">
+                <label for="4">4</label><br>
+                <input type="radio" name="rank" id="5" value="5">
+                <label for="5">5</label><br>
+                <input type="radio" name="rank" id="6" value="6">
+                <label for="6">6</label><br>
+                <input type="radio" name="rank" id="7" value="7">
+                <label for="7">7</label><br>
+                <input type="radio" name="rank" id="8" value="8">
+                <label id="9" for="8">8</label><br>
+                </div>
+
+
+            </div>
+            <div class="hidden" id="qualities">
+                <hr>
+                <h3>Qualities</h3>
+                    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
+                      <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+                      </ol>
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="benevolent.jpg" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Benevolent</h5>
+                            <p>Always wish the best for others!</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <img src="optimistic.jpg" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Optimistic</h5>
+                            <p>Stay positive whatever!</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <img src="sincerity_key.jpg" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Sincere</h5>
+                            <p>The key for good relationships.</p>
+                          </div>
+                        </div>
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+            </div>
+            <div class="hidden">
+                <hr>
+                <h3>Flaws</h3>
+                <p>Oops, I've hidden my flaws, click the button below if you really want to see it.</p>
+                <button type="button" id="flaws">Reveal</button>
+                <div id="carouselExampleCaptions2" class="carousel slide" data-ride="carousel" name="flawsCarousel">
+                      <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleCaptions2" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleCaptions2" data-slide-to="1"></li>
+
+                      </ol>
+                      <div class="carousel-inner">
+                        <div class="carousel-item active">
+                          <img src="shy.jpg" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Shy</h5>
+                            <p>I seem a bit reserved at the begining, but after a while you'll see that deep down I'm open.</p>
+                          </div>
+                        </div>
+                        <div class="carousel-item">
+                          <img src="quiet.gif" class="d-block w-100" alt="...">
+                          <div class="carousel-caption d-none d-md-block">
+                            <h5>Quiet</h5>
+                            <p>I don't speak a lot (it could be a quality sometimes ;), but I like to discuss different subjects.</p>
+                          </div>
+                        </div>
+
+                      </div>
+                      <a class="carousel-control-prev" href="#carouselExampleCaptions2" role="button" data-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Previous</span>
+                      </a>
+                      <a class="carousel-control-next" href="#carouselExampleCaptions2" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                      </a>
+                    </div>
+            </div>
+
+
+        </div>
+        <footer class="bg-light text-center text-white">
+      <!-- Grid container -->
+      <div class="container p-4 pb-0">
+        <!-- Section: Social media -->
+        <section class="mb-4">
+          <a href="https://www.linkedin.com/in/marouan-boulli/" target="_blank" class="fa fa-linkedin"></a>
+          <a href="https://github.com/Marouan-git" target="_blank" class="fa fa-github"></a>
+          <a href="https://www.instagram.com/marouan_boulli/" target="_blank" class="fa fa-instagram"></a>
+
+
+
+        </section>
+        <!-- Section: Social media -->
+      </div>
+      <!-- Grid container -->
+
+      <!-- Copyright -->
+      <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        © 2020 Copyright:
+        <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    </body>
+</html>
