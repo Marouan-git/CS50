@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block main %}
+    <div>
+        <table class="center">
+            <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Name</th>
+                    <th>Shares</th>
+                    <th>Price</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for symbol in symbols %}
+                    {% if shares_dict[symbol] != 0 %}
+                    <tr>
+                        <td>{{symbol}}</td>
+                        <td>{{lookup(symbol)["name"]}}</td>
+                        <td>{{shares_dict[symbol]}}</td>
+                        <td>{{lookup(symbol)["price"] | usd}}</td>
+                        <td>{{(lookup(symbol)["price"] * shares_dict[symbol]) | usd}}</td>
+                    </tr>
+                    {% endif %}
+                {% endfor %}
+                <tr style="border: solid black; padding-top: 20px;">
+
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold; padding-top: 10px;">Cash</td>
+                    <td style="padding-top: 10px;">{{cash | usd}}</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="font-weight: bold;">Total</td>
+                    <td>{{total | usd}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
